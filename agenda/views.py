@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.http.response import HttpResponse
-from agenda.models import eventos
 from django.template import loader
 
 # Create your views here.
@@ -9,7 +8,11 @@ def index(request):
 
 
 def exibir_evento(request):
-    evento= eventos[1]
+    evento= {
+        "nome":"Teste",
+        "categoria":"categoria A",
+        "local":"Rio de Janeiro"
+    }
     #template = loader.get_template("agenda/exibir_evento.html")
     #rendered_templeted = template.render(context={"evento":evento},request=request) #Html
     #return HttpResponse(rendered_templeted)
