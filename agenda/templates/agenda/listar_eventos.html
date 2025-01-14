@@ -43,6 +43,7 @@
                 <th>Local</th>
                 <th>Link</th>
                 <th>Data</th>
+                <th>Informações</th>
             </tr>
         </thead>
         <tbody>
@@ -72,7 +73,9 @@
                         {% else %}
                             A definir
                         {% endif %}
-                    </td>    
+                    </td>  
+                    
+                    <td><a href="{% url 'exibir_evento' evento.id %}">Ver Detalhes</td>
                 </tr>
             {% empty %}
                 <tr>
