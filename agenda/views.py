@@ -1,19 +1,18 @@
-from django.shortcuts import render
+from django.shortcuts import render,get_object_or_404
 from django.http.response import HttpResponse
 from django.template import loader
+from agenda.models import Evento
+from datetime import date
 
 # Create your views here.
-def index(request):
-    return HttpResponse("Olá Mundo!")
+def listar_eventos(request):
+    
+    
+    eventos = Evento.objects.filter(data__gte=date.today())
+    return render(request=request, context={"eventos": eventos}, template_name="agenda/listar_eventos.html")
 
 
-def exibir_evento(request):
-    evento= {
-        "nome":"Teste",
-        "categoria":"categoria A",
-        "local":"Rio de Janeiro"
-    }
-    #template = loader.get_template("agenda/exibir_evento.html")
-    #rendered_templeted = template.render(context={"evento":evento},request=request) #Html
-    #return HttpResponse(rendered_templeted)
-    return render(request=request,context={"evento":evento},template_name="agenda/exibir_evento.html")
+
+def exibir_evento(request, id):
+    evento = get_object_or_404(Evento, id=id)
+    return render(request, "agenda/exibir_evento.html", {"evento": evento})

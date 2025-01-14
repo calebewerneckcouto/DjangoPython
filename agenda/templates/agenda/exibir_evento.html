@@ -1,8 +1,80 @@
-<html>
-    <h1>Evento:{{evento.nome}}</h1>
-    <p>Categoria: {{evento.categoria}}</p>
-    {%if evento.local%}<p>Local:{{evento.local}}</p> {% endif%}
-    {%if evento.link%}<p>Link:{{evento.link}}</p>{% endif%}
-</html>                     
-                        
-                        
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Evento</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #2E8B57;
+        }
+
+        p {
+            font-size: 1.1em;
+            margin: 10px 0;
+        }
+
+        .event-details {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+
+        .btn-participar {
+            background-color: #2E8B57;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-participar:hover {
+            background-color: #45a049;
+        }
+
+        .link-back {
+            display: inline-block;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #2E8B57;
+            font-size: 1.1em;
+        }
+
+        .link-back:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<div class="event-details">
+    <h1>Evento: {{ evento.nome }}</h1>
+    <p><strong>Categoria:</strong> {{ evento.categoria.nome }}</p>
+    
+    {% if evento.local %}
+        <p><strong>Local:</strong> {{ evento.local }}</p>
+    {% endif %}
+    
+    {% if evento.link %}
+        <p><strong>Link:</strong> <a href="{{ evento.link }}" target="_blank">{{ evento.link }}</a></p>
+    {% endif %}
+    
+    <p><strong>Data:</strong> {{ evento.data |  date:"d/m/Y"}}</p>
+    <p><strong>Quantidade de participantes:</strong> {{ evento.participantes }}</p>
+
+    <form action="" method="POST">
+        <input type="submit" class="btn-participar" value="Participar">
+    </form>
+
+    <p><a href="listar_eventos.html" class="link-back">Ir para listagem de eventos</a></p>
+</div>
+
+</body>
+</html>
